@@ -3,7 +3,7 @@ import configparser
 dummy_section = "[DEFAULT]\n"
 
 
-class ConfigReader:
+class ConfigContentManager:
   def __init__(self, filepath):
     self.filepath = filepath
     self.config_parser = configparser.ConfigParser(allow_no_value=True)
