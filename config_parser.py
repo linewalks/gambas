@@ -7,8 +7,10 @@ class ConfigContentManager:
   def __init__(self, filepath):
     self.filepath = filepath
     self.config_parser = configparser.ConfigParser(allow_no_value=True)
+    self._read_file()
 
-    with open(filepath) as config_file:
+  def _read_file(self):
+    with open(self.filepath) as config_file:
       content = config_file.read()
     try:
       self.config_parser.read_string(content)
