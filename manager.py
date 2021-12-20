@@ -5,7 +5,7 @@ DUMMY_SECTION = "[DEFAULT]\n"
 
 class ConfigContentManager:
   def __init__(self, filepath):
-    self.filepath = filepath
+    self.__filepath = filepath
     self.config_parser = configparser.ConfigParser(allow_no_value=True)
     self._read_file()
 
@@ -19,10 +19,10 @@ class ConfigContentManager:
       self.config_parser.read_string(f"{DUMMY_SECTION}{content}")
 
   def _set_filepath(self, filepath):
-    self.filepath = filepath
+    self.__filepath = filepath
   
   def get_filepath(self):
-    return self.filepath
+    return self.__filepath
 
   def get_key_list(self):
     return self.config_parser.defaults().keys()
