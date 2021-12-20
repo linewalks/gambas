@@ -10,13 +10,13 @@ class ConfigContentManager:
     self._read_file()
 
   def _read_file(self):
-    with open(self.filepath) as config_file:
+    with open(self.__filepath) as config_file:
       content = config_file.read()
     try:
       self.config_parser.read_string(content)
     except configparser.MissingSectionHeaderError:
       content = f"{DUMMY_SECTION}{content}"
-      self.config_parser.read_string(f"{DUMMY_SECTION}{content}")
+      self.config_parser.read_string(content)
 
   def _set_filepath(self, filepath):
     self.__filepath = filepath
