@@ -1,6 +1,6 @@
 import configparser
 
-dummy_section = "[DEFAULT]\n"
+DUMMY_SECTION = "[DEFAULT]\n"
 
 
 class ConfigContentManager:
@@ -15,8 +15,8 @@ class ConfigContentManager:
     try:
       self.config_parser.read_string(content)
     except configparser.MissingSectionHeaderError:
-      content = f"{dummy_section}{content}"
-      self.config_parser.read_string(f"{dummy_section}{content}")
+      content = f"{DUMMY_SECTION}{content}"
+      self.config_parser.read_string(f"{DUMMY_SECTION}{content}")
 
   def _set_filepath(self, filepath):
     self.filepath = filepath
