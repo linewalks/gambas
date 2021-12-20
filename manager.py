@@ -22,7 +22,7 @@ class ConfigContentManager:
     self.filepath = filepath
   
   def get_filepath(self):
-    return filepath
+    return self.filepath
 
   def get_key_list(self):
     return self.config_parser.defaults().keys()
