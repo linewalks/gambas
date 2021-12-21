@@ -1,3 +1,7 @@
+import os
+import sys
+sys.path.append(os.getcwd())
+
 import pytest
 from validator import ConfigValidator
 
@@ -5,15 +9,15 @@ from validator import ConfigValidator
 class TestValidator:
   @pytest.fixture(scope="class")
   def default_config_path(self):
-    return "tests/files/default_config.cfg"
+    return f"{os.getcwd()}/tests/files/default_config.cfg"
     
   @pytest.fixture(scope="class")
   def correct_config_path(self):
-    return "tests/files/test_correct_config.cfg"
+    return f"{os.getcwd()}/tests/files/test_correct_config.cfg"
     
   @pytest.fixture(scope="class")
   def missing_config_path(self):
-    return "tests/files/test_missing_config.cfg"
+    return f"{os.getcwd()}/tests/files/test_missing_config.cfg"
 
   def test_validate_correct_config_file(self, default_config_path, correct_config_path):
     config_validator = ConfigValidator(default_config_path, correct_config_path)
