@@ -1,6 +1,9 @@
 import os
 import sys
-sys.path.append(os.getcwd())
+
+BASE_DIR = os.getcwd()
+
+sys.path.append(BASE_DIR)
 
 import pytest
 from validator import ConfigValidator
@@ -9,15 +12,15 @@ from validator import ConfigValidator
 class TestValidator:
   @pytest.fixture(scope="class")
   def default_config_path(self):
-    return f"{os.getcwd()}/tests/files/default_config.cfg"
+    return os.path.join(BASE_DIR "tests", "files", "default_config.cfg")
     
   @pytest.fixture(scope="class")
   def correct_config_path(self):
-    return f"{os.getcwd()}/tests/files/test_correct_config.cfg"
+    return os.path.join(BASE_DIR, "tests", "files", "test_correct_config.cfg")
     
   @pytest.fixture(scope="class")
   def missing_config_path(self):
-    return f"{os.getcwd()}/tests/files/test_missing_config.cfg"
+    return os.path.join(BASE_DIR, "tests", "files", "test_missing_config.cfg")
 
   def test_validate_correct_config_file(self, default_config_path, correct_config_path):
     config_validator = ConfigValidator(default_config_path, correct_config_path)
