@@ -10,13 +10,30 @@ from validator import ConfigValidator
 
 
 TEST_CONFIG_FOLDER = os.path.join(BASE_DIR, "tests", "files")
-
 TEST_PAIR = {
     "TEST_USER": "user",
     "TEST_LUNCH": "gambas",
     "TEST_DINNER": "ssam"
 }
 
+
+def get_filepath_with_creating_file(
+    config_file_name,
+    test_file_folder=None,
+    item_num=len(TEST_PAIR)
+):
+  if item_num > len(TEST_PAIR):
+    raise IndexError(
+        f"You set item_num {item_num}. Please set item_num less than length of TEST_PAIR"
+    )
+
+  filepath = os.path.join(test_file_folder, config_file_name)
+
+  with open(filepath, "w") as f:
+    for test_key, test_value in list(TEST_PAIR.items())[:item_num]:
+      f.write(f'{test_key}="{test_value}"\n')
+
+  return filepath
 
 class TestValidator:
   @pytest.fixture(scope="class")
@@ -29,34 +46,29 @@ class TestValidator:
 
   @pytest.fixture(scope="class")
   def default_config_path(self, test_file_folder):
-    filepath = os.path.join(test_file_folder, "default_config.cfg")
-
-    with open(filepath, "w") as f:
-      for test_key in TEST_PAIR.keys():
-        f.write(f"{test_key}=\n")
-
+    filepath = get_filepath_with_creating_file(
+        "default_config.cfg",
+        test_file_folder=test_file_folder,
+    )
     yield filepath
     os.remove(filepath)
 
   @pytest.fixture(scope="class")
   def correct_config_path(self, test_file_folder):
-    filepath = os.path.join(test_file_folder, "correct_config.cfg")
-
-    with open(filepath, "w") as f:
-      for test_key, test_value in TEST_PAIR.items():
-        f.write(f'{test_key}="{test_value}"\n')
-
+    filepath = get_filepath_with_creating_file(
+        "correct_config.cfg",
+        test_file_folder=test_file_folder,
+    )
     yield filepath
     os.remove(filepath)
     
   @pytest.fixture(scope="class")
   def missing_config_path(self, test_file_folder):
-    filepath = os.path.join(test_file_folder, "missing_config.cfg")
-
-    with open(filepath, "w") as f:
-      for test_key, test_value in list(TEST_PAIR.items())[:1]:
-        f.write(f'{test_key}="{test_value}"\n')
-  
+    filepath = get_filepath_with_creating_file(
+        "missing_config.cfg",
+        test_file_folder=test_file_folder,
+        item_num=1
+    )
     yield filepath
     os.remove(filepath)
 
