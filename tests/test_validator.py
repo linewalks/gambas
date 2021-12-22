@@ -19,7 +19,7 @@ TEST_PAIR = {
 
 def get_filepath_with_creating_file(
     config_file_name,
-    test_file_folder=None,
+    test_file_folder,
     item_num=len(TEST_PAIR)
 ):
   if item_num > len(TEST_PAIR):
