@@ -6,7 +6,7 @@ class Command:
   def __init__(self):
     self.parser = argparse.ArgumentParser(description="*** Config File Validator Option ***")
     self.add_options()
-  
+
   def add_options(self):
     self.parser.add_argument("-d", "--default-path", type=str, help="Default config file path")
     self.parser.add_argument("-t", "--target-path", type=str, help="Target config file path")
@@ -17,7 +17,10 @@ class Command:
         action="store_false",
         help="""Do not get error when some keys do not exists. just raise warning"""
     )
-    self.args = self.parser.parse_args()
+    self.args = self.parser.parse_args()  
+
+  def set_args(self, option_list):
+    self.args = self.parser.parse_args(option_list)
 
   def run(self):
     config_validator = ConfigValidator(self.args.default_path, self.args.target_path)
