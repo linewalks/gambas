@@ -1,3 +1,4 @@
+import warnings
 from manager import ConfigContentManager
 
 
@@ -8,7 +9,7 @@ class ConfigValidator:
     self.default_keys = ConfigContentManager(self.__default_filepath).get_key_list()
     self.target_keys = ConfigContentManager(self.__target_filepath).get_key_list()
 
-  def check_exist_keys(self):
+  def check_exist_keys(self, is_error=True):
     cand_key_list = [
         cand_key
         for cand_key in self.default_keys
@@ -16,6 +17,10 @@ class ConfigValidator:
     ]
 
     if cand_key_list:
-      raise KeyError(f"{', '.join(cand_key_list)} not in {self.__target_filepath}")
+      sentence = f"{', '.join(cand_key_list)} not in {self.__target_filepath}"
+      if is_error:
+        raise KeyError(sentence)
+      else:
+        warnings.warn(sentence)
     else:
       print(f"There are all keys in a target config file {self.__target_filepath}")
