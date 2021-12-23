@@ -19,7 +19,7 @@ class Command:
     )
     self.args = self.parser.parse_args()  
 
-  def set_args(self, option_list):
+  def _set_args(self, option_list):
     self.args = self.parser.parse_args(option_list)
 
   def run(self):

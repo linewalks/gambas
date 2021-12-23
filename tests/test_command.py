@@ -29,17 +29,17 @@ class TestCommand:
 
   def test_command_run(self, command, default_config_path, correct_config_path):
     option_list = ["-d", default_config_path, "-t", correct_config_path]
-    command.set_args(option_list)
+    command._set_args(option_list)
     command.run()
 
   def test_command_run_error_with_missing_key_config(self, command, default_config_path, missing_config_path):
     option_list = ["-d", default_config_path, "-t", missing_config_path]
-    command.set_args(option_list)
+    command._set_args(option_list)
     with pytest.raises(KeyError):
       command.run()
 
   def test_command_run_warning_with_missing_key_config(self, command, default_config_path, missing_config_path):
     option_list = ["-d", default_config_path, "-t", missing_config_path, "--no-error"]
-    command.set_args(option_list)
+    command._set_args(option_list)
     with pytest.warns(UserWarning):
       command.run()
