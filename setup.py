@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 
 setup(
-    name="Gambas", 
+    name="gambas", 
     version="0.0.1",
     description="Config Key Validator",
     long_description_content_type="text/markdown",
@@ -12,12 +12,12 @@ setup(
     author_email="yy.chung@linewalks.com", 
     packages=find_packages(exclude=["tests"]), 
     install_requires=[
-        "configparser",
+        "configparser>=4.0.2",
     ],
-    python_requires=">= 3.8",
+    python_requires=">= 3.6",
     entry_points={
         "console_scripts": [
-            "tabdanc = gambas.run:main"
+            "gambas = gambas.run:main"
         ]
     },
     setup_requires=["pytest-runner"],
