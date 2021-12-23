@@ -1,5 +1,5 @@
 import warnings
-from manager import ConfigContentManager
+from gambas.manager import ConfigContentManager
 
 
 class ConfigValidator:

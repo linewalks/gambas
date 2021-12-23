@@ -1,13 +1,12 @@
 import os
 import pytest
 
-from command import Command
+from gambas.command import Command
 
 class TestCommand:
   @pytest.fixture(scope="class")
   def command(self):
-    command = Command()
-    return command
+    return Command()
 
   @pytest.mark.parametrize(
       "no_error_option",

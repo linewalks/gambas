@@ -1,6 +1,6 @@
 import pytest
-from tests.conftest import TEST_DEFAULT_CONFIG_DICT
-from manager import ConfigContentManager
+from gambas.tests.conftest import TEST_DEFAULT_CONFIG_DICT
+from gambas.manager import ConfigContentManager
 
 
 class TestManager:

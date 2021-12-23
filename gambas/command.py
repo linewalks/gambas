@@ -1,5 +1,5 @@
 import argparse
-from validator import ConfigValidator
+from gambas.validator import ConfigValidator
 
 
 class Command:
