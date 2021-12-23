@@ -1,6 +1,9 @@
 # Gambas
 Gambas is a config key validator. You can confirmed the config file whether its keys all exist or not.
-Generally, `default.cfg` would be the standard for your config. Of course, you don't need to set `default.cfg` as a standard file name. Comparing two files' keys with Gambas, you can find the keys you missed.
+
+Generally, `default.cfg` would be the standard for your config. (Of course, you don't need to set `default.cfg` as a standard file name.) And, you has a config file used on your project, but not upload on your git due to `.gitignore`. Because it is a little bothering to sync two files, you sometimes might miss some keys 
+
+Comparing two files' keys with **Gambas**, you can find the keys of  you missed.
 
 ## Getting Started
 ### Built With
