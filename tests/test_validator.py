@@ -15,3 +15,8 @@ class TestValidator:
     config_validator = ConfigValidator(default_config_path, missing_config_path)
     with pytest.raises(KeyError):
       config_validator.check_exist_keys()
+  
+  def test_validate_missing_config_file_with_no_error(self, default_config_path, missing_config_path):
+    config_validator = ConfigValidator(default_config_path, missing_config_path)
+    with pytest.warns(UserWarning):
+      config_validator.check_exist_keys(is_error=False)

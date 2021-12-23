@@ -1,3 +1,4 @@
+import warnings
 from manager import ConfigContentManager
 
 
@@ -17,6 +18,9 @@ class ConfigValidator:
 
     if cand_key_list:
       sentence = f"{', '.join(cand_key_list)} not in {self.__target_filepath}"
-      raise KeyError(sentence) if is_error else Warning(sentence)
+      if is_error:
+        raise KeyError(sentence)
+      else:
+        warnings.warn(sentence)
     else:
       print(f"There are all keys in a target config file {self.__target_filepath}")
