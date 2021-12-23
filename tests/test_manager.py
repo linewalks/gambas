@@ -11,7 +11,7 @@ class TestManager:
   def test_get_key_list(self, config_manager):
     """
     NOTE
-    ConfigContentManager has features to parsing keys of a config file and return them as a list.
+    ConfigContentManager has features to parse keys of a config file and return them as a list.
     default_config.cfg was made of TEST_DEFAULT_CONFIG_DICT on conftest.py
     Therefore, in this test, validate that default_config.cfg has all keys same with TEST_DEFAULT_CONFIG_DICT's
     """
