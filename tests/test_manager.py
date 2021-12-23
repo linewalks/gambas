@@ -1,5 +1,5 @@
 import pytest
-from tests.conftest import TEST_PAIR
+from tests.conftest import TEST_DEFAULT_CONFIG_DICT
 from manager import ConfigContentManager
 
 
@@ -12,9 +12,9 @@ class TestManager:
     """
     NOTE
     ConfigContentManager has features to parsing keys of a config file and return them as a list.
-    default_config.cfg was made of TEST_PAIR on conftest.py
-    Therefore, in this test, validate that default_config.cfg has all keys same with TEST_PAIR's
+    default_config.cfg was made of TEST_DEFAULT_CONFIG_DICT on conftest.py
+    Therefore, in this test, validate that default_config.cfg has all keys same with TEST_DEFAULT_CONFIG_DICT's
     """
     config_key_list = config_manager.get_key_list()
     config_key_upper_list = map(lambda x: x.upper(), config_key_list)
-    assert set(TEST_PAIR.keys()) == set(config_key_upper_list)
+    assert set(TEST_DEFAULT_CONFIG_DICT.keys()) == set(config_key_upper_list)

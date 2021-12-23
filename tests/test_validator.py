@@ -1,5 +1,5 @@
 import pytest
-from tests.conftest import TEST_PAIR, BASE_DIR 
+from tests.conftest import TEST_DEFAULT_CONFIG_DICT, BASE_DIR 
 from validator import ConfigValidator
 
 
