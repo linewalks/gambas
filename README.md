@@ -7,7 +7,7 @@ Comparing two files' keys with **Gambas**, you can find the keys you missed of t
 
 ## Getting Started
 ### Built With
-- Python >= 3.8.x
+- Python >= 3.6.x
 
 ### Installation
 
