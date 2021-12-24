@@ -1,5 +1,5 @@
 # Gambas
-Gambas is a config key validator. You can confirmed the config file whether its keys all exist or not.
+Gambas is a config key validator. You can confirm the config file whether its keys all exist or not.
 
 Generally, `default.cfg` would be the standard for your config file. (Of course, you don't need to set `default.cfg` as a standard file name.) And, you has a config file used on your project, but not upload on your git due to `.gitignore`. I'll call it 'target config file'. Because it is a little bothering to sync two files, you sometimes might miss some keys.
 
@@ -36,7 +36,10 @@ Comparing two files' keys with **Gambas**, you can find the keys you missed of t
     ...
     ```
 
-2. Execute the command with config files path. The option `-d`. Another option `-t`.
+2. Execute the command with config files path. 
+
+    - `-d`: the default config file
+    - `-t`: the target config file
     ```sh
     > gambas -f default_config.cfg -t target_config.cfg
     ```
