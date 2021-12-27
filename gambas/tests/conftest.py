@@ -7,7 +7,8 @@ BASE_DIR = os.getcwd()
 sys.path.append(BASE_DIR)
 
 
-TEST_CONFIG_FOLDER = os.path.join(BASE_DIR, "files")
+TEST_FOLDER = os.path.join(BASE_DIR, "files")
+
 TEST_DEFAULT_DICT = {
     "test_user": "user",
     "test_breakfast": "salad",
@@ -17,9 +18,9 @@ TEST_DEFAULT_DICT = {
 
 
 def get_filepath_with_creating_file(
-    config_file_name,
+    filename,
     filetype,
-    test_file_folder,
+    folder,
     item_num=len(TEST_DEFAULT_DICT)
 ):
   if item_num > len(TEST_DEFAULT_DICT):
@@ -27,8 +28,7 @@ def get_filepath_with_creating_file(
         f"You set item_num {item_num}. Please set item_num less than length of TEST_DEFAULT_DICT"
     )
 
-  file = f"{config_file_name}.{filetype}"
-  filepath = os.path.join(test_file_folder, file)
+  filepath = os.path.join(folder, f"{filename}.{filetype}")
 
   with open(filepath, "w", encoding="utf-8") as f:
     if filetype == "cfg":
@@ -42,19 +42,19 @@ def get_filepath_with_creating_file(
 
 @pytest.fixture(scope="session")
 def test_file_folder():
-  if not os.path.isdir(TEST_CONFIG_FOLDER):
-    os.makedirs(TEST_CONFIG_FOLDER)
+  if not os.path.isdir(TEST_FOLDER):
+    os.makedirs(TEST_FOLDER)
 
-  yield TEST_CONFIG_FOLDER
-  os.rmdir(TEST_CONFIG_FOLDER)
+  yield TEST_FOLDER
+  os.rmdir(TEST_FOLDER)
 
 
 @pytest.fixture(scope="session")
 def default_config_path(test_file_folder):
   filepath = get_filepath_with_creating_file(
-      "default_config",
-      test_file_folder=test_file_folder,
-      filetype="cfg"
+      filename="default_config",
+      filetype="cfg",
+      folder=test_file_folder
   )
   yield filepath
   os.remove(filepath)
@@ -63,32 +63,9 @@ def default_config_path(test_file_folder):
 @pytest.fixture(scope="session")
 def correct_config_path(test_file_folder):
   filepath = get_filepath_with_creating_file(
-      "correct_config",
-      test_file_folder=test_file_folder,
-      filetype="cfg"
-  )
-  yield filepath
-  os.remove(filepath)
-
-
-
-@pytest.fixture(scope="session")
-def default_json_path(test_file_folder):
-  filepath = get_filepath_with_creating_file(
-      "default_json",
-      test_file_folder=test_file_folder,
-      filetype="json"
-  )
-  yield filepath
-  os.remove(filepath)
-
-
-@pytest.fixture(scope="session")
-def correct_json_path(test_file_folder):
-  filepath = get_filepath_with_creating_file(
-      "correct_json",
-      test_file_folder=test_file_folder,
-      filetype="json"
+      filename="correct_config",
+      filetype="cfg",
+      folder=test_file_folder
   )
   yield filepath
   os.remove(filepath)
@@ -97,10 +74,32 @@ def correct_json_path(test_file_folder):
 @pytest.fixture(scope="session")
 def missing_config_path(test_file_folder):
   filepath = get_filepath_with_creating_file(
-      "missing_config",
-      test_file_folder=test_file_folder,
+      filename="missing_config",
       filetype="cfg",
+      folder=test_file_folder,
       item_num=1
+  )
+  yield filepath
+  os.remove(filepath)
+
+
+@pytest.fixture(scope="session")
+def default_json_path(test_file_folder):
+  filepath = get_filepath_with_creating_file(
+      filename="default_json",
+      filetype="json",
+      folder=test_file_folder
+  )
+  yield filepath
+  os.remove(filepath)
+
+
+@pytest.fixture(scope="session")
+def correct_json_path(test_file_folder):
+  filepath = get_filepath_with_creating_file(
+      filename="correct_json",
+      filetype="json",
+      folder=test_file_folder
   )
   yield filepath
   os.remove(filepath)
