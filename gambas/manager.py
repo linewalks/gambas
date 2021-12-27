@@ -21,7 +21,8 @@ class BaseContentManager(metaclass=ABCMeta):
 
   @abstractmethod
   def get_key_list(self):
-    return self.config_parser.defaults().keys()
+    raise NotImplementedError
+
 
 class ConfigContentManager(BaseContentManager):
   def __init__(self, filepath):
@@ -41,6 +42,7 @@ class ConfigContentManager(BaseContentManager):
 
   def get_key_list(self):
     return self.config_parser.defaults().keys()
+
 
 class JsonContentManager(BaseContentManager):
   def __init__(self, filepath):
