@@ -8,11 +8,11 @@ sys.path.append(BASE_DIR)
 
 
 TEST_CONFIG_FOLDER = os.path.join(BASE_DIR, "files")
-TEST_DEFAULT_CONFIG_DICT = {
-    "TEST_USER": "user",
-    "TEST_BREAFAST": "salad",
-    "TEST_LUNCH": "gambas",
-    "TEST_DINNER": "ssam"
+TEST_DEFAULT_DICT = {
+    "test_user": "user",
+    "test_breakfast": "salad",
+    "test_lunch": "gambas",
+    "test_dinner": "ssam"
 }
 
 
@@ -20,11 +20,11 @@ def get_filepath_with_creating_file(
     config_file_name,
     filetype,
     test_file_folder,
-    item_num=len(TEST_DEFAULT_CONFIG_DICT)
+    item_num=len(TEST_DEFAULT_DICT)
 ):
-  if item_num > len(TEST_DEFAULT_CONFIG_DICT):
+  if item_num > len(TEST_DEFAULT_DICT):
     raise IndexError(
-        f"You set item_num {item_num}. Please set item_num less than length of TEST_DEFAULT_CONFIG_DICT"
+        f"You set item_num {item_num}. Please set item_num less than length of TEST_DEFAULT_DICT"
     )
 
   file = f"{config_file_name}.{filetype}"
@@ -32,10 +32,10 @@ def get_filepath_with_creating_file(
 
   with open(filepath, "w", encoding="utf-8") as f:
     if filetype == "cfg":
-      for test_key, test_value in list(TEST_DEFAULT_CONFIG_DICT.items())[:item_num]:
-        f.write(f'{test_key}="{test_value}"\n')
+      for test_key, test_value in list(TEST_DEFAULT_DICT.items())[:item_num]:
+        f.write(f'{test_key.upper()}="{test_value}"\n')
     elif filetype == "json":
-      json.dump(TEST_DEFAULT_CONFIG_DICT, f, ensure_ascii=False, indent="\t")
+      json.dump(TEST_DEFAULT_DICT, f, ensure_ascii=False, indent="\t")
 
   return filepath
 
