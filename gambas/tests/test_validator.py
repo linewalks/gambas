@@ -20,6 +20,13 @@ class TestValidator:
     with pytest.warns(UserWarning):
       config_validator.check_exist_keys(is_error=False)
 
+  def test_validate_correct_json_file(self, default_json_path, correct_json_path):
+    config_validator = ConfigValidator(default_json_path, correct_json_path)
+    try:
+      config_validator.check_exist_keys()
+    except Exception as e:
+      assert False, e
+
   def test_validate_different_file_extension(self, default_json_path, correct_config_path):
     # NOTE: test the validator to compare other extensions like a pair of config and json file
     config_validator = ConfigValidator(default_json_path, correct_config_path)
