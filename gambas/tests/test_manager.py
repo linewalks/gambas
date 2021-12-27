@@ -1,6 +1,6 @@
 import pytest
 from gambas.tests.conftest import TEST_DEFAULT_CONFIG_DICT
-from gambas.manager import ConfigContentManager
+from gambas.manager import ConfigContentManager, JsonContentManager
 
 
 class TestManager:
@@ -18,3 +18,12 @@ class TestManager:
     config_key_list = config_manager.get_key_list()
     config_key_upper_list = map(lambda x: x.upper(), config_key_list)
     assert set(TEST_DEFAULT_CONFIG_DICT.keys()) == set(config_key_upper_list)
+
+class TestJsonManager:
+  @pytest.fixture(scope="class")
+  def json_manager(self, default_json_path):
+    return JsonContentManager(default_json_path)
+  
+  def test_json(self, json_manager):
+    json_key_list = json_manager.get_key_list()
+    assert set(TEST_DEFAULT_CONFIG_DICT.keys()) == set(json_key_list)
