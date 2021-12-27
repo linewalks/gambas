@@ -28,14 +28,15 @@ def get_filepath_with_creating_file(
         f"You set item_num {item_num}. Please set item_num less than length of TEST_DEFAULT_DICT"
     )
 
+  sliced_item_list = list(TEST_DEFAULT_DICT.items())[:item_num]
   filepath = os.path.join(folder, f"{filename}.{filetype}")
 
   with open(filepath, "w", encoding="utf-8") as f:
     if filetype == "cfg":
-      for test_key, test_value in list(TEST_DEFAULT_DICT.items())[:item_num]:
+      for test_key, test_value in sliced_item_list:
         f.write(f'{test_key.upper()}="{test_value}"\n')
     elif filetype == "json":
-      json.dump(TEST_DEFAULT_DICT, f, ensure_ascii=False, indent="\t")
+      json.dump(dict(sliced_item_list), f, ensure_ascii=False, indent="\t")
 
   return filepath
 
