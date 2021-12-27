@@ -1,6 +1,5 @@
 import pytest
-from tests.conftest import TEST_DEFAULT_CONFIG_DICT, BASE_DIR 
-from validator import ConfigValidator
+from gambas.validator import ConfigValidator
 
 
 class TestValidator:
