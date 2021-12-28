@@ -22,7 +22,7 @@ Comparing two files' keys with **Gambas**, you can find the keys you missed of t
     ```
     # cfg file
     PSQL_HOST="127.0.0.1"
-    PSQL_HOST="5432"
+    PSQL_PORT="5432"
     PSQL_DBNAME="test_db"
     WEBHOOK_URL="http://webhook.url.com"
     ...
@@ -30,10 +30,10 @@ Comparing two files' keys with **Gambas**, you can find the keys you missed of t
     ```
     # json file
     {
-        PSQL_HOST: "127.0.0.1",
-        PSQL_HOST: "5432",
-        PSQL_DBNAME: "test_db",
-        WEBHOOK_URL: "http://webhook.url.com",
+        "psql_host": "127.0.0.1",
+        "psql_port": "5432",
+        "psql_dbname": "test_db",
+        "webhook_url": "http://webhook.url.com",
     }
     ...
     ```
