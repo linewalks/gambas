@@ -43,15 +43,15 @@ Comparing two files' keys with **Gambas**, you can find the keys you missed of t
     - `-d`: the default config file
     - `-t`: the target config file
     ```sh
-    > gambas -f default_config.cfg -t target_config.cfg
+    > gambas -d default_config.cfg -t target_config.cfg
     ```
     You also can compare files with different extensions.
     ```sh
-    > gambas -f default_config.cfg -t target_json.json
+    > gambas -d default_config.cfg -t target_json.json
     ```
 3. If you don't want to let an error raise, execute the command with option `--no-error`. In this case, the warnig comes out instead of an error message.
     ```sh
-    > gambas -f default_config.cfg -t target_config.cfg --no-error
+    > gambas -d default_config.cfg -t target_config.cfg --no-error
     ```
 
 ## Contact
