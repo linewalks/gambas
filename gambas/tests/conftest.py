@@ -10,10 +10,10 @@ sys.path.append(BASE_DIR)
 TEST_FOLDER = os.path.join(BASE_DIR, "files")
 
 TEST_DEFAULT_DICT = {
-    "test_user": "user",
-    "test_breakfast": "salad",
-    "test_lunch": "gambas",
-    "test_dinner": "ssam"
+    "TEST_USER": "user",
+    "TEST_BREAKFAST": "salad",
+    "TEST_LUNCH": "gambas",
+    "TEST_DINNER": "ssam"
 }
 
 
@@ -34,7 +34,7 @@ def get_filepath_with_creating_file(
   with open(filepath, "w", encoding="utf-8") as f:
     if filetype == "cfg":
       for test_key, test_value in sliced_item_list:
-        f.write(f'{test_key.upper()}="{test_value}"\n')
+        f.write(f'{test_key}="{test_value}"\n')
     elif filetype == "json":
       json.dump(dict(sliced_item_list), f, ensure_ascii=False, indent="\t")
 
