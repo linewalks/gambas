@@ -28,6 +28,7 @@ class ConfigContentManager(BaseContentManager):
   def __init__(self, filepath):
     super().__init__(filepath)
     self.config_parser = configparser.ConfigParser(allow_no_value=True)
+    self.config_parser.optionxform = str  # NOTE: not to change keys as lower case charactors
     self._read_file()
 
   def _read_file(self):
@@ -41,8 +42,7 @@ class ConfigContentManager(BaseContentManager):
       self.config_parser.read_string(content)
 
   def get_key_list(self):
-    key_list = self.config_parser.defaults().keys()
-    return list(map(lambda x: x.upper(), key_list))
+    return self.config_parser.defaults().keys()
 
 
 class JsonContentManager(BaseContentManager):
