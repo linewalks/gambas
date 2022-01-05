@@ -41,7 +41,8 @@ class ConfigContentManager(BaseContentManager):
       self.config_parser.read_string(content)
 
   def get_key_list(self):
-    return self.config_parser.defaults().keys()
+    key_list = self.config_parser.defaults().keys()
+    return list(map(lambda x: x.upper(), key_list))
 
 
 class JsonContentManager(BaseContentManager):
