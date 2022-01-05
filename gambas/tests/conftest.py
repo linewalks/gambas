@@ -11,9 +11,9 @@ TEST_FOLDER = os.path.join(BASE_DIR, "files")
 
 TEST_DEFAULT_DICT = {
     "TEST_USER": "user",
-    "TEST_BREAKFAST": "salad",
-    "TEST_LUNCH": "gambas",
-    "TEST_DINNER": "ssam"
+    "test_breakfast": "salad",
+    "TeSt_LuNcH": "gambas",
+    "test_DINNER": "ssam"
 }
 
 
