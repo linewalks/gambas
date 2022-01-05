@@ -18,21 +18,23 @@ Comparing two files' keys with **Gambas**, you can find the keys you missed of t
 
 ## Usage
 
-1. Prepare your 2 config files, default config file and target config file.
+1. Prepare your 2 config files, default file and target file. The file extension is limited only on `cfg`, `json`.
     ```
-    # default config file
-    PSQL_HOST=
-    PSQL_HOST=
-    PSQL_DBNAME=
-    WEBHOOK_URL=
+    # cfg file
+    PSQL_HOST="127.0.0.1"
+    PSQL_PORT="5432"
+    PSQL_DBNAME="test_db"
+    WEBHOOK_URL="http://webhook.url.com"
     ...
     ```
     ```
-    # target config file
-    PSQL_HOST="127.0.0.1"
-    PSQL_HOST="5432"
-    PSQL_DBNAME="test_db"
-    WEBHOOK_URL="http://webhook.url.com"
+    # json file
+    {
+        "psql_host": "127.0.0.1",
+        "psql_port": "5432",
+        "psql_dbname": "test_db",
+        "webhook_url": "http://webhook.url.com",
+    }
     ...
     ```
 
@@ -41,12 +43,15 @@ Comparing two files' keys with **Gambas**, you can find the keys you missed of t
     - `-d`: the default config file
     - `-t`: the target config file
     ```sh
-    > gambas -f default_config.cfg -t target_config.cfg
+    > gambas -d default_config.cfg -t target_config.cfg
     ```
-
+    You also can compare files with different extensions.
+    ```sh
+    > gambas -d default_config.cfg -t target_json.json
+    ```
 3. If you don't want to let an error raise, execute the command with option `--no-error`. In this case, the warnig comes out instead of an error message.
     ```sh
-    > gambas -f default_config.cfg -t target_config.cfg --no-error
+    > gambas -d default_config.cfg -t target_config.cfg --no-error
     ```
 
 ## Contact
