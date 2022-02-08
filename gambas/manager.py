@@ -41,8 +41,18 @@ class ConfigContentManager(BaseContentManager):
       content = f"{DUMMY_SECTION}{content}"
       self.config_parser.read_string(content)
 
+    config = {}
+    with open(filepath, mode="rb") as config_file:
+      exec(compile(config_file.read(), filepath, "exec"), config)
+
+    self.config_dict = {
+        k: v
+        for k, v in config.items()
+        if k in self.config_parser.defaults().keys()
+    }
+
   def get_key_list(self):
-    return self.config_parser.defaults().keys()
+    return self.config_dict.keys()
 
 
 class JsonContentManager(BaseContentManager):
