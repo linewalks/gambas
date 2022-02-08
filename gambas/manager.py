@@ -41,6 +41,7 @@ class ConfigContentManager(BaseContentManager):
       content = f"{DUMMY_SECTION}{content}"
       self.config_parser.read_string(content)
 
+    config_paser_key_list = self.config_parser.defaults().keys()
     config = {}
     with open(filepath, mode="rb") as config_file:
       exec(compile(config_file.read(), filepath, "exec"), config)
@@ -48,7 +49,7 @@ class ConfigContentManager(BaseContentManager):
     self.config_dict = {
         k: v
         for k, v in config.items()
-        if k in self.config_parser.defaults().keys()
+        if k in config_paser_key_list
     }
 
   def get_key_list(self):
