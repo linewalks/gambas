@@ -1,4 +1,3 @@
-import configparser
 import json
 from abc import abstractmethod, ABCMeta
 
@@ -27,22 +26,16 @@ class BaseContentManager(metaclass=ABCMeta):
 class ConfigContentManager(BaseContentManager):
   def __init__(self, filepath):
     super().__init__(filepath)
-    self.config_parser = configparser.ConfigParser(allow_no_value=True)
-    self.config_parser.optionxform = str  # NOTE: not to change keys as lower case charactors
+    self.config_dict = {}
     self._read_file()
 
   def _read_file(self):
     filepath = self.get_filepath()
-    with open(filepath) as config_file:
-      content = config_file.read()
-    try:
-      self.config_parser.read_string(content)
-    except configparser.MissingSectionHeaderError:
-      content = f"{DUMMY_SECTION}{content}"
-      self.config_parser.read_string(content)
+    with open(filepath, mode="rb") as config_file:
+      exec(compile(config_file.read(), filepath, "exec"), None, self.config_dict)
 
   def get_key_list(self):
-    return self.config_parser.defaults().keys()
+    return self.config_dict.keys()
 
 
 class JsonContentManager(BaseContentManager):
