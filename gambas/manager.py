@@ -32,10 +32,7 @@ class ConfigContentManager(BaseContentManager):
   def _read_file(self):
     filepath = self.get_filepath()
     with open(filepath, mode="rb") as config_file:
-      exec(compile(config_file.read(), filepath, "exec"), self.config)
-
-    self.config.pop('__builtins__')
-    print(self.config)
+      exec(compile(config_file.read(), filepath, "exec"), None, self.config)
 
   def get_key_list(self):
     return self.config.keys()
